@@ -27,28 +27,34 @@ import java.util.Scanner;
 public class SommaCentesimi {
 
   /** Costruttore privato per impedire l'istanziazione. */
-  private SommaCentesimi() {}
+  private SommaCentesimi() {
+  }
 
   /*
-   * Scrivere il metodo main che legga dal flusso di ingresso un elenco di importi in euro e
-   * centesimi (uno per riga, con la parte decimale separata dalla parte intera da un punto) e ne
+   * Scrivere il metodo main che legga dal flusso di ingresso un elenco di importi
+   * in euro e
+   * centesimi (uno per riga, con la parte decimale separata dalla parte intera da
+   * un punto) e ne
    * emetta nel flusso d'uscita la somma.
    */
 
   /**
-   * Legge dal flusso di ingresso un elenco di importi in euro e centesimi (uno per riga, con la
-   * parte decimale separata dalla parte intera da un punto) e ne emette nel flusso d'uscita la
+   * Legge dal flusso di ingresso un elenco di importi in euro e centesimi (uno
+   * per riga, con la
+   * parte decimale separata dalla parte intera da un punto) e ne emette nel
+   * flusso d'uscita la
    * somma.
    *
    * @param args gli argomenti (ignorati) della riga di comando
-  */
+   */
   public static void main(String[] args) {
-    double totalSum = 0;
-    try(Scanner scanner = new Scanner(System.in)) {
-      while(scanner.hasNextDouble()) {
-        totalSum += scanner.nextDouble();
+    int cents = 0;
+    try (Scanner sc = new Scanner(System.in)) {
+      while (sc.hasNextLine()) {
+        String[] parts = sc.nextLine().split("\\.");
+        cents += 100 * Integer.parseInt(parts[0]) + Integer.parseInt(parts[1]);
       }
-      System.out.println(totalSum);
+      System.out.println(cents / 100 + "." + (cents % 100 < 10 ? "0" : "") + cents % 100);
     }
   }
 }
