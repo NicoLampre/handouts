@@ -25,11 +25,35 @@ package it.unimi.di.prog2.e05;
 public class MathFunctions {
 
   /** . */
-  private MathFunctions() {}
+  private MathFunctions() {
+  }
 
-  /* Specify and implement a method that given a positive number returns an approximation
-   * of its square root.
+  /**
+   * Extracts (if possible) the square root of the given number.
    *
-   * Hint: https://en.wikipedia.org/wiki/Bisection_method
+   * <ul>
+   * <li><b>Requires:</b> {@literal \( x \geq 0 \)}.
+   * <li><b>Modifies:</b> nothing.
+   * <li><b>Effects:</b> returns {@literal \( y : | y^2 - x | < 10^{-3} \)}.
+   * </ul>
    */
+  @SuppressWarnings("doclint:missing") // this is because we are still Lisokv' style
+  public static double sqrt(double x) {
+    double low = 0;
+    double mid = -1;
+    double high;
+    if (x > 1)
+      high = x;
+    else
+      high = 1;
+
+    while (high - low > .000001) { // this is (10^-3)^2
+      mid = (high + low) / 2;
+      if (mid * mid - x < 0)
+        low = mid;
+      else
+        high = mid;
+    }
+    return mid;
+  }
 }
