@@ -25,12 +25,43 @@ package it.unimi.di.prog2.e05;
 public class ArrayUtils {
 
   /** . */
-  private ArrayUtils() {}
+  private ArrayUtils() {
+  }
 
   /*
    * Specify and implement a method that given a sorted array of integers and a
    * value, returns the index of the value if it is present in the array.
    *
-   * Hint: https://research.google/blog/extra-extra-read-all-about-it-nearly-all-binary-searches-and-mergesorts-are-broken/
+   * Hint:
+   * https://research.google/blog/extra-extra-read-all-about-it-nearly-all-binary-
+   * searches-and-mergesorts-are-broken/
    */
+
+  /**
+   * Reads a given sorted (increasing order) array of integers and a value, then
+   * returns
+   * the index of the value if it is present in the array.
+   * 
+   * <ul>
+   * <li><b>REQUIRES:</b> {@code array} is sorted in increasing order and is not
+   * {@code null}.
+   * <li><b>MODIFIES:</b> nothing.
+   * <li><b>EFFECTS:</b> returns the first occurrence of the index of
+   * {@code toSearch} if it is present in {@code array}, -1 otherwise.
+   * </ul>
+   */
+  public static int binarySearch(final int[] array, final int toSearch) {
+    int sx = 0;
+    int dx = array.length;
+    while (sx < dx) {
+      int mid = (sx + dx) / 2;
+      if (array[mid] == toSearch)
+        return mid;
+      else if (array[mid] > toSearch)
+        dx = mid;
+      else
+        sx = mid + 1;
+    }
+    return -1;
+  }
 }
