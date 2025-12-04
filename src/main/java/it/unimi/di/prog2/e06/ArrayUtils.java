@@ -25,48 +25,83 @@ import java.util.Collections;
 import java.util.List;
 
 /** Classe di metodi di utilità per array. */
-@SuppressWarnings(
-    "doclint:missing") // this is because comments of methods to implement have yet to be added
+@SuppressWarnings("doclint:missing") // this is because comments of methods to implement have yet to be added
 public class ArrayUtils {
 
   /** . */
-  private ArrayUtils() {}
+  private ArrayUtils() {
+  }
 
   /**
-   * Finds the index (or insertion point) of an integer in an array of integers in increasing order.
+   * Finds the index (or insertion point) of an integer in an array of integers
+   * in increasing order.
    *
-   * <p>If the array contains the given integer, returns its index. Otherwise, returns {@code
-   * -(insertion_point) - 1} where {@code insertion_point} is the index of the first integer greater
-   * than {@code needle}; note that this implies that the return value is non-negative iff the array
-   * contains the integer.
+   * <p>
+   * If the array contains the given integer, returns its index.
+   * Otherwise, returns {@code -(insertion_point) - 1} where
+   * {@code insertion_point} is the index of the first integer greater than
+   * {@code needle};
+   * note that this implies that the return value is non-negative iff
+   * the array contains the integer.
    *
    * @see Collections#binarySearch(List, Object)
    * @param haystack the not {@code null} array of integers in increasing order.
-   * @param needle the integer to look for.
-   * @return the index of the given integer, or {@code -insertion_point - 1} if none is present.
+   * @param needle   the integer to look for.
+   * @return the index of the given integer, or {@code -insertion_point - 1} if
+   *         none is present.
    */
   static int binarySearch(final int[] haystack, final int needle) {
     int lo = 0;
     int hi = haystack.length - 1;
     while (lo <= hi) {
       int mid = lo + (hi - lo) / 2;
-      if (needle < haystack[mid]) hi = mid - 1;
-      else if (needle > haystack[mid]) lo = mid + 1;
-      else return mid;
+      if (needle < haystack[mid])
+        hi = mid - 1;
+      else if (needle > haystack[mid])
+        lo = mid + 1;
+      else
+        return mid;
     }
     return -lo - 1;
   }
 
-  /*
-   * Specify and implement a method that shifts right all elements of the given array from {@code
-   * insertionPoint} (inclusive) to the end of the array, and then inserts {@code value} at {@code
-   * insertionPoint}.
+  /**
+   * Shift elements of {@code array} to the right starting at
+   * {@code insertionPoint} (inclusive)
+   * and inserts {@code value} at {@code insertionPoint}.
+   * The last element is discarded to keep the array size constant.
+   * Assumes {@code 0 <= insertionPoint < array.length}.
+   *
+   * @param array          the array where to insert the value.
+   * @param insertionPoint the index where to insert the value.
+   * @param value          the value to insert.
    */
-  static void insertAt(int[] array, int insertionPoint, int value) {}
+  static void insertAt(int[] array, int insertionPoint, int value) {
+    for (int i = array.length - 1; i > insertionPoint; i--)
+      array[i] = array[i - 1];
+    array[insertionPoint] = value;
+  }
 
-  /* Specify and implement a method that fills the given array with the given value. */
-  static void fill(int[] array, int value) {}
+  /**
+   * Fills the given array with the given value.
+   * 
+   * @param array the array to fill.
+   * @param value the value to fill the array with.
+   */
+  static void fill(int[] array, int value) {
+    for (int i = 0; i < array.length; i++) {
+      array[i] = value;
+    }
+  }
 
-  /* Specify and implement a method that prints the given array, one element per line. */
-  static void print(int[] array) {}
+  /**
+   * Prints the given array to the standard output, one element per line.
+   * 
+   * @param array the array to print.
+   */
+  static void print(int[] array) {
+    for (int i = 0; i < array.length; i++) {
+      System.out.println(array[i]);
+    }
+  }
 }

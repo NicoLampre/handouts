@@ -21,20 +21,25 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e06;
 
+import java.util.Scanner;
+
 /** Client code for {@link ArrayUtils}. */
 public class ArrayUtilsClient {
 
   /** . */
-  private ArrayUtilsClient() {}
+  private ArrayUtilsClient() {
+  }
 
-  /*
+  /**
    * Receives a size as command line argument, then initializes an array of
    * that size filled with {@link Integer#MAX_VALUE}. Then reads integers from
    * standard input and inserts them in the array if not already present,
    * keeping the array sorted and of the same size (discarding the last element
    * at every insertion). Finally, prints the array.
-
-   public static void main(String[] args) {
+   * 
+   * @param args the size of the array.
+   */
+  public static void main(String[] args) {
 
     int size = Integer.parseInt(args[0]);
     int[] array = new int[size];
@@ -46,14 +51,12 @@ public class ArrayUtilsClient {
         int index = ArrayUtils.binarySearch(array, value);
         if (index < 0) { // value not found
           int insertionPoint = -index - 1;
-          if (insertionPoint < size) ArrayUtils.insertAt(array, insertionPoint, value);
+          if (insertionPoint < size)
+            ArrayUtils.insertAt(array, insertionPoint, value);
         }
       }
     }
 
     ArrayUtils.print(array);
   }
-
-  */
-
 }
