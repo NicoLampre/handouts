@@ -28,7 +28,8 @@ import java.util.NoSuchElementException;
 /**
  * {@code ArrayIntSet}s are mutable, unbounded sets of integers.
  *
- * <p>A typical ArrayIntSet is \( S = \{x_1, \ldots, x_n \} \).
+ * <p>
+ * A typical ArrayIntSet is \( S = \{x_1, \ldots, x_n \} \).
  */
 public class ArrayIntSet {
 
@@ -48,7 +49,8 @@ public class ArrayIntSet {
   /**
    * Initializes this set to be empty.
    *
-   * <p>Builds the set \( S = \varnothing \).
+   * <p>
+   * Builds the set \( S = \varnothing \).
    */
   public ArrayIntSet() {
     els = new int[INITIAL_CAPACITY];
@@ -61,12 +63,14 @@ public class ArrayIntSet {
    * Looks for a given element in this set.
    *
    * @param x the element to look for.
-   * @return an index {@code i} such that {@code els[i] == x} if the element belongs to this set, or
-   *     -1
+   * @return an index {@code i} such that {@code els[i] == x} if the element
+   *         belongs to this set, or
+   *         -1
    */
   private int indexOf(int x) {
     for (int i = 0; i < size; i++) {
-      if (els[i] == x) return i;
+      if (els[i] == x)
+        return i;
     }
     return -1;
   }
@@ -74,33 +78,39 @@ public class ArrayIntSet {
   /**
    * Adds the given element to this set.
    *
-   * <p>This method modifies the object, that is: \( S' = S \cup \{ x \} \).
+   * <p>
+   * This method modifies the object, that is: \( S' = S \cup \{ x \} \).
    *
    * @param x the element to be added.
    */
   public void insert(int x) {
-    if (indexOf(x) != -1) return;
-    if (size == els.length) els = Arrays.copyOf(els, els.length * 2);
+    if (indexOf(x) != -1)
+      return;
+    if (size == els.length)
+      els = Arrays.copyOf(els, els.length * 2);
     els[size++] = x;
   }
 
   /**
    * Removes the given element from this set.
    *
-   * <p>This method modifies the object, that is: \( S' = S \setminus \{ x \} \).
+   * <p>
+   * This method modifies the object, that is: \( S' = S \setminus \{ x \} \).
    *
    * @param x the element to be removed.
    */
   public void remove(int x) {
     int i = indexOf(x);
-    if (i == -1) return;
+    if (i == -1)
+      return;
     els[i] = els[--size];
   }
 
   /**
    * Tells if the given element is in this set.
    *
-   * <p>Answers the question \( x\in S \).
+   * <p>
+   * Answers the question \( x\in S \).
    *
    * @param x the element to look for.
    * @return whether the given element belongs to this set, or not.
@@ -112,7 +122,8 @@ public class ArrayIntSet {
   /**
    * Returns the cardinality of this set.
    *
-   * <p>Responds with \( |S| \).
+   * <p>
+   * Responds with \( |S| \).
    *
    * @return the size of this set.
    */
@@ -127,7 +138,8 @@ public class ArrayIntSet {
    * @throws NoSuchElementException if this set is empty.
    */
   public int choose() throws NoSuchElementException {
-    if (size == 0) throw new NoSuchElementException("Can't choose from an empty set");
+    if (size == 0)
+      throw new NoSuchElementException("Can't choose from an empty set");
     return els[0];
   }
 }

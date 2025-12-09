@@ -28,7 +28,8 @@ import java.util.NoSuchElementException;
 /**
  * {@code ListIntSet}s are mutable, unbounded sets of integers.
  *
- * <p>A typical ListIntSet is \( S = \{x_1, \ldots, x_n \} \).
+ * <p>
+ * A typical ListIntSet is \( S = \{x_1, \ldots, x_n \} \).
  */
 public class ListIntSet {
 
@@ -42,7 +43,8 @@ public class ListIntSet {
   /**
    * Initializes this set to be empty.
    *
-   * <p>Builds the set \( S = \varnothing \).
+   * <p>
+   * Builds the set \( S = \varnothing \).
    */
   public ListIntSet() {
     els = new ArrayList<>();
@@ -54,8 +56,9 @@ public class ListIntSet {
    * Looks for a given element in this set.
    *
    * @param x the element to look for.
-   * @return the index where {@code x} appears in {@code els} if the element belongs to this set, or
-   *     -1
+   * @return the index where {@code x} appears in {@code els} if the element
+   *         belongs to this set, or
+   *         -1
    */
   private int getIndex(int x) {
     return els.indexOf(x);
@@ -64,24 +67,28 @@ public class ListIntSet {
   /**
    * Adds the given element to this set.
    *
-   * <p>This method modifies the object, that is: \( S' = S \cup \{ x \} \).
+   * <p>
+   * This method modifies the object, that is: \( S' = S \cup \{ x \} \).
    *
    * @param x the element to be added.
    */
   public void insert(int x) {
-    if (getIndex(x) < 0) els.add(x);
+    if (getIndex(x) < 0)
+      els.add(x);
   }
 
   /**
    * Removes the given element from this set.
    *
-   * <p>This method modifies the object, that is: \( S' = S \setminus \{ x \} \).
+   * <p>
+   * This method modifies the object, that is: \( S' = S \setminus \{ x \} \).
    *
    * @param x the element to be removed.
    */
   public void remove(int x) {
     int i = getIndex(x);
-    if (i < 0) return;
+    if (i < 0)
+      return;
     int last = els.size() - 1;
     els.set(i, els.get(last));
     els.remove(last);
@@ -90,7 +97,8 @@ public class ListIntSet {
   /**
    * Tells if the given element is in this set.
    *
-   * <p>Answers the question \( x\in S \).
+   * <p>
+   * Answers the question \( x\in S \).
    *
    * @param x the element to look for.
    * @return whether the given element belongs to this set, or not.
@@ -102,7 +110,8 @@ public class ListIntSet {
   /**
    * Returns the cardinality of this set.
    *
-   * <p>Responds with \( |S| \).
+   * <p>
+   * Responds with \( |S| \).
    *
    * @return the size of this set.
    */
@@ -117,7 +126,8 @@ public class ListIntSet {
    * @throws NoSuchElementException if this set is empty.
    */
   public int choose() throws NoSuchElementException {
-    if (els.isEmpty()) throw new NoSuchElementException("Can't choose from an empty set");
+    if (els.isEmpty())
+      throw new NoSuchElementException("Can't choose from an empty set");
     return els.get(els.size() - 1);
   }
 }
