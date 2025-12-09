@@ -25,23 +25,30 @@ package it.unimi.di.prog2.h07;
 public class MathFunctions {
 
   /** . */
-  private MathFunctions() {}
+  private MathFunctions() {
+  }
 
   /**
    * Extracts (if possible) the square root of the given number.
    *
-   * <p>Partial function which, when the argument is non-negative, returns an approximation
-   * {@literal \( y \)} of the square root in the sense that {@literal \( |y^2 - x| < 10^{-3} \)}.
+   * <p>
+   * Partial function which, when the argument is non-negative, returns an
+   * approximation
+   * {@literal \( y \)} of the square root in the sense that {@literal \( |y^2 -
+   * x| < 10^{-3} \)}.
    *
    * @param x the number whose square root is to be extracted.
    * @return an approximation of the square root.
    * @throws IllegalArgumentException if {@code x} is negative.
    */
   public static double sqrt(double x) throws IllegalArgumentException {
-    if (x < 0) throw new IllegalArgumentException("Negative argument: " + x);
-    if (x == 0) return 0;
+    if (x < 0)
+      throw new IllegalArgumentException("Negative argument: " + x);
+    if (x == 0)
+      return 0;
     double guess = x / 2;
-    while (Math.abs(guess * guess - x) >= 0.00001) guess = (guess + x / guess) / 2;
+    while (Math.abs(guess * guess - x) >= 0.00001)
+      guess = (guess + x / guess) / 2;
     return guess;
   }
 }
