@@ -24,7 +24,8 @@ package it.unimi.di.prog2.h12;
 import java.util.Objects;
 
 /**
- * Immutable class that represents a (positive or negative) amount in a currency that has an integer
+ * Immutable class that represents a (positive or negative) amount in a currency
+ * that has an integer
  * part and cents.
  */
 public class CurrencyAmount {
@@ -40,7 +41,8 @@ public class CurrencyAmount {
    *
    * AF:
    *
-   *  - cents represents the amount in cents, for example 3.24 is represented as 324.
+   * - cents represents the amount in cents, for example 3.24 is represented as
+   * 324.
    *
    */
 
@@ -59,11 +61,13 @@ public class CurrencyAmount {
    * @param units whole units of the amount.
    * @param cents cents of the amount.
    * @return a positive {@link CurrencyAmount} representing the specified amount.
-   * @throws IllegalArgumentException if {@code cents} is not between 0 and 99 or {@code units} is
-   *     negative.
+   * @throws IllegalArgumentException if {@code cents} is not between 0 and 99 or
+   *                                  {@code units} is
+   *                                  negative.
    */
   public static CurrencyAmount positive(int units, int cents) {
-    if (units < 0) throw new IllegalArgumentException("Units must be non negative");
+    if (units < 0)
+      throw new IllegalArgumentException("Units must be non negative");
     if (cents < 0 || cents > 99)
       throw new IllegalArgumentException("Cents must be between 0 and 99");
     return new CurrencyAmount(units * 100 + cents);
@@ -75,11 +79,13 @@ public class CurrencyAmount {
    * @param units whole units of the amount.
    * @param cents cents of the amount.
    * @return a negative {@link CurrencyAmount} representing the specified amount.
-   * @throws IllegalArgumentException if {@code cents} is not between 0 and 99 or {@code units} is
-   *     negative.
+   * @throws IllegalArgumentException if {@code cents} is not between 0 and 99 or
+   *                                  {@code units} is
+   *                                  negative.
    */
   public static CurrencyAmount negative(int units, int cents) {
-    if (units < 0) throw new IllegalArgumentException("Units must be non negative");
+    if (units < 0)
+      throw new IllegalArgumentException("Units must be non negative");
     if (cents < 0 || cents > 99)
       throw new IllegalArgumentException("Cents must be between 0 and 99");
     return new CurrencyAmount(-(units * 100 + cents));
@@ -88,20 +94,24 @@ public class CurrencyAmount {
   /**
    * Parses an amount from a string.
    *
-   * <p>The string must have the format <samp>U.C</samp> or <samp>-U.C</samp>, where <samp>U</samp>
-   * and <samp>C</samp> are two integers corresponding to the units and cents and <samp>C</samp> has
+   * <p>
+   * The string must have the format <samp>U.C</samp> or <samp>-U.C</samp>, where
+   * <samp>U</samp>
+   * and <samp>C</samp> are two integers corresponding to the units and cents and
+   * <samp>C</samp> has
    * exactly two digits.
    *
    * @param amount the amount.
    * @return the parsed {@link CurrencyAmount}.
-   * @throws NullPointerException if {@code amount} is {@code null}.
+   * @throws NullPointerException     if {@code amount} is {@code null}.
    * @throws IllegalArgumentException if the string is not in the correct format.
    */
   public static CurrencyAmount parseCurrencyAmount(String amount) {
     if (Objects.requireNonNull(amount, "The amount string must not be null").isEmpty())
       throw new IllegalArgumentException("The amount string must not be empty");
     char sign = amount.charAt(0);
-    if (sign == '-') amount = amount.substring(1);
+    if (sign == '-')
+      amount = amount.substring(1);
     String[] parts = amount.split("\\.");
     if (parts.length != 2)
       throw new IllegalArgumentException("The amount string must contain a single dot");
@@ -118,7 +128,8 @@ public class CurrencyAmount {
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException("The part after the dot is not an integer");
     }
-    if (units < 0) throw new IllegalArgumentException("Units must be non negative");
+    if (units < 0)
+      throw new IllegalArgumentException("Units must be non negative");
     if (cents < 0 || cents > 99)
       throw new IllegalArgumentException("Cents must be between 0 and 99");
     return new CurrencyAmount((sign == '-' ? -1 : 1) * (units * 100 + cents));
@@ -130,8 +141,10 @@ public class CurrencyAmount {
    * @return 1 if the amount is positive, 0 if it is zero, -1 otherwise.
    */
   public int sign() {
-    if (cents == 0) return 0;
-    if (cents < 0) return -1;
+    if (cents == 0)
+      return 0;
+    if (cents < 0)
+      return -1;
     return 1;
   }
 
@@ -166,12 +179,14 @@ public class CurrencyAmount {
   }
 
   /**
-   * Returns a new amount representing the difference between this amount and another.
+   * Returns a new amount representing the difference between this amount and
+   * another.
    *
    * @param other the other amount.
    * @return the difference between the two amounts.
-   * @throws IllegalArgumentException if {@code other} is greater than this amount.
-   * @throws NullPointerException if {@code other} is {@code null}.
+   * @throws IllegalArgumentException if {@code other} is greater than this
+   *                                  amount.
+   * @throws NullPointerException     if {@code other} is {@code null}.
    */
   public CurrencyAmount sottrai(CurrencyAmount other) {
     return new CurrencyAmount(
@@ -186,8 +201,10 @@ public class CurrencyAmount {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (!(obj instanceof CurrencyAmount other)) return false;
+    if (this == obj)
+      return true;
+    if (!(obj instanceof CurrencyAmount other))
+      return false;
     return cents == other.cents;
   }
 

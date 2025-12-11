@@ -22,11 +22,12 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2.h11.builder;
 
 /** See EJ 2.1 for a discussion of the alternatives presented here. */
-@SuppressWarnings({"unused", "doclint:missing"})
+@SuppressWarnings({ "unused", "doclint:missing" })
 public class UseNutritionFacts {
 
   /** . */
-  private UseNutritionFacts() {}
+  private UseNutritionFacts() {
+  }
 
   public static void main(String[] args) {
 
@@ -39,7 +40,6 @@ public class UseNutritionFacts {
     mutableCola.setSodium(35);
     mutableCola.setCarbohydrate(27);
 
-    NutritionFacts cocaCola =
-        new NutritionFacts.Builder(240, 8).calories(100).sodium(35).carbohydrate(27).build();
+    NutritionFacts cocaCola = new NutritionFacts.Builder(240, 8).calories(100).sodium(35).carbohydrate(27).build();
   }
 }

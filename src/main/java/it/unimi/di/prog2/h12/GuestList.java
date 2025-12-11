@@ -29,7 +29,9 @@ import java.util.Objects;
 /**
  * Guest list for a private party of prescribed capacity.
  *
- * <p>Guests are identified by their names that are represented by strings, which must not be null
+ * <p>
+ * Guests are identified by their names that are represented by strings, which
+ * must not be null
  * or empty; no check on duplicates is performed.
  */
 public class GuestList {
@@ -43,14 +45,14 @@ public class GuestList {
   /*
    * RI:
    *
-   *  - guests is not null and does not contain nulls.
-   *  - guests does not contain empty strings.
-   *  - capacity >= guests.size()
-   *  - capacity > 0
+   * - guests is not null and does not contain nulls.
+   * - guests does not contain empty strings.
+   * - capacity >= guests.size()
+   * - capacity > 0
    *
    * AF:
    *
-   *  - the invitees are the strings in guests
+   * - the invitees are the strings in guests
    *
    */
 
@@ -61,22 +63,27 @@ public class GuestList {
    * @throws IllegalArgumentException if {@code capacity} is not positive.
    */
   public GuestList(int capacity) {
-    if (capacity <= 0) throw new IllegalArgumentException("Capacity must be positive");
+    if (capacity <= 0)
+      throw new IllegalArgumentException("Capacity must be positive");
     this.capacity = capacity;
     this.guests = new ArrayList<>();
   }
 
   /**
-   * Builds a guest list with the given maximum capacity, populated with an initial list of guests.
+   * Builds a guest list with the given maximum capacity, populated with an
+   * initial list of guests.
    *
-   * @param guests the initial list of guests.
+   * @param guests   the initial list of guests.
    * @param capacity the maximum size of the guest list.
    * @throws IllegalArgumentException if {@code capacity} is not positive.
-   * @throws IllegalArgumentException if {@code guests.size()} is greater than {@code capacity}.
-   * @throws NullPointerException if {@code guests} is null or contains {@code null}.
+   * @throws IllegalArgumentException if {@code guests.size()} is greater than
+   *                                  {@code capacity}.
+   * @throws NullPointerException     if {@code guests} is null or contains
+   *                                  {@code null}.
    */
   public GuestList(List<String> guests, int capacity) {
-    if (capacity <= 0) throw new IllegalArgumentException("Capacity must be positive");
+    if (capacity <= 0)
+      throw new IllegalArgumentException("Capacity must be positive");
     if (Objects.requireNonNull(guests, "Guests list must not be null").size() > capacity)
       throw new IllegalArgumentException("Too many guests");
     for (String name : guests)
@@ -89,9 +96,11 @@ public class GuestList {
   /**
    * Returns the list of guests.
    *
-   * <p>The returned {@link List} is unmodifiable.
+   * <p>
+   * The returned {@link List} is unmodifiable.
    *
-   * <p>As we'll see this method is an horrible idea!
+   * <p>
+   * As we'll see this method is an horrible idea!
    *
    * @return an unmodifiable view of the guests list.
    */
@@ -104,10 +113,11 @@ public class GuestList {
    *
    * @param guest the guest name.
    * @throws IllegalStateException if the list has reached its maximum capacity.
-   * @throws NullPointerException if {@code guest} is {@code null}.
+   * @throws NullPointerException  if {@code guest} is {@code null}.
    */
   public void invite(String guest) {
-    if (guests.size() >= capacity) throw new IllegalStateException("Capacity reached");
+    if (guests.size() >= capacity)
+      throw new IllegalStateException("Capacity reached");
     if (Objects.requireNonNull(guest, "Guest must not be null").isEmpty())
       throw new IllegalArgumentException("Guest name must not be empty");
     guests.add(guest);

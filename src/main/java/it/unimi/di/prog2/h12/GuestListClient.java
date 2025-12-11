@@ -28,12 +28,15 @@ import java.util.List;
 public class GuestListClient {
 
   /** . */
-  private GuestListClient() {}
+  private GuestListClient() {
+  }
 
   /**
    * Main method.
    *
-   * <p>Performs a set of operations, to show some potential issues with the {@link GuestList}
+   * <p>
+   * Performs a set of operations, to show some potential issues with the
+   * {@link GuestList}
    * implementation.
    *
    * @param args command line arguments (ignored).

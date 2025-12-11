@@ -22,7 +22,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2.h11.builder;
 
 /** See EJ 2.1 for a discussion of this class. */
-@SuppressWarnings({"unused", "doclint:missing"})
+@SuppressWarnings({ "unused", "doclint:missing" })
 public class NutritionFactsImmutable {
 
   private final int servingSize;
