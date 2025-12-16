@@ -24,8 +24,10 @@ package it.unimi.di.prog2.s12;
 import java.util.Objects;
 
 /**
- * A rational number is an immutable number that can be expressed as the quotient or fraction \( p/q
- * \) of two {@code int}s, a numerator \( p \) and a non-zero denominator \( q \).
+ * A rational number is an immutable number that can be expressed as the
+ * quotient or fraction \( p/q
+ * \) of two {@code int}s, a numerator \( p \) and a non-zero denominator \( q
+ * \).
  */
 public class RationalNumber {
 
@@ -66,25 +68,31 @@ public class RationalNumber {
   /**
    * Creates a new rational number.
    *
-   * <p>The rational number is reduced to minimum terms, so the arguments of this methods are
-   * allowed to be {@code long}s and the fraction will be created if and only if the numerator and
-   * the denominator, once reduced to minimum terms, are not too large to be represented as {@code
+   * <p>
+   * The rational number is reduced to minimum terms, so the arguments of this
+   * methods are
+   * allowed to be {@code long}s and the fraction will be created if and only if
+   * the numerator and
+   * the denominator, once reduced to minimum terms, are not too large to be
+   * represented as {@code
    * int}s.
    *
-   * @param numerator the numerator.
+   * @param numerator   the numerator.
    * @param denominator the denominator.
    * @throws IllegalArgumentException if {@code denominator} is zero.
-   * @throws IllegalArgumentException if the numerator or the denominator reduced to minimum terms
-   *     are too large to be represented as {@code int}s.
+   * @throws IllegalArgumentException if the numerator or the denominator reduced
+   *                                  to minimum terms
+   *                                  are too large to be represented as
+   *                                  {@code int}s.
    */
   public RationalNumber(long numerator, long denominator) {
-    if (denominator == 0) throw new IllegalArgumentException("denominator cannot be zero");
+    if (denominator == 0)
+      throw new IllegalArgumentException("denominator cannot be zero");
     if (denominator < 0) {
       numerator = -numerator;
       denominator = -denominator;
     }
-    long gcd =
-        gcd(numerator > 0 ? numerator : -numerator, denominator > 0 ? denominator : -denominator);
+    long gcd = gcd(numerator > 0 ? numerator : -numerator, denominator > 0 ? denominator : -denominator);
     long reducedNumerator = numerator / gcd;
     long reducedDenominator = denominator / gcd;
     if (reducedNumerator < Integer.MIN_VALUE || reducedNumerator > Integer.MAX_VALUE)
@@ -134,7 +142,8 @@ public class RationalNumber {
   /**
    * Tells whether this rational number is an integer.
    *
-   * @return {@code true} if this rational number is an integer, {@code false} otherwise.
+   * @return {@code true} if this rational number is an integer, {@code false}
+   *         otherwise.
    */
   public boolean isInteger() {
     return denominator == 1;
@@ -143,7 +152,8 @@ public class RationalNumber {
   /**
    * Tells whether this rational number is positive.
    *
-   * @return {@code true} if this rational number is positive, {@code false} otherwise.
+   * @return {@code true} if this rational number is positive, {@code false}
+   *         otherwise.
    */
   public boolean isPositive() {
     return numerator > 0;
@@ -152,7 +162,8 @@ public class RationalNumber {
   /**
    * Tells whether this rational number is equal to zero.
    *
-   * @return {@code true} if this rational number is zero, {@code false} otherwise.
+   * @return {@code true} if this rational number is zero, {@code false}
+   *         otherwise.
    */
   public boolean isZero() {
     return numerator == 0;
@@ -160,16 +171,19 @@ public class RationalNumber {
 
   @Override
   public String toString() {
-    if (denominator == 1) return Integer.toString(numerator);
+    if (denominator == 1)
+      return Integer.toString(numerator);
     return numerator + "/" + denominator;
   }
 
   @Override
   public boolean equals(Object obj) {
-    if (!(obj instanceof RationalNumber other)) return false;
+    if (!(obj instanceof RationalNumber other))
+      return false;
     return numerator == other.numerator && denominator == other.denominator;
     // Why the following is not correct?
-    // return (double) numerator / denominator == (double) other.numerator / other.denominator;
+    // return (double) numerator / denominator == (double) other.numerator /
+    // other.denominator;
   }
 
   @Override
