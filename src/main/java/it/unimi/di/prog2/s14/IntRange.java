@@ -25,11 +25,15 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A mutable class representing a range of integers, with configurable initial from, to, and step
+ * A mutable class representing a range of integers, with configurable initial
+ * from, to, and step
  * values.
  *
- * <p>The class is iterable; when the iterator is created, if the step is positive, the initial
- * value must be less than the final value, and conversely if the step is negative; once created,
+ * <p>
+ * The class is iterable; when the iterator is created, if the step is positive,
+ * the initial
+ * value must be less than the final value, and conversely if the step is
+ * negative; once created,
  * the iterator is not affected by successive modification in the range.
  */
 public class IntRange implements Iterable<Integer> {
@@ -44,7 +48,8 @@ public class IntRange implements Iterable<Integer> {
   private int step;
 
   /**
-   * Constructs the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE} (exclusive)
+   * Constructs the range from {@link Integer#MIN_VALUE} to
+   * {@link Integer#MAX_VALUE} (exclusive)
    * with step 1.
    */
   public IntRange() {
@@ -78,7 +83,8 @@ public class IntRange implements Iterable<Integer> {
    * @throws IllegalArgumentException if the step is 0.
    */
   public void step(int step) {
-    if (step == 0) throw new IllegalArgumentException();
+    if (step == 0)
+      throw new IllegalArgumentException();
     this.step = step;
   }
 
@@ -90,17 +96,22 @@ public class IntRange implements Iterable<Integer> {
   /**
    * Returns an iterator for this range.
    *
-   * <p>If the range is modified after the iterator is returned, the modifications will not be
+   * <p>
+   * If the range is modified after the iterator is returned, the modifications
+   * will not be
    * reflected in the iterator.
    *
    * @return the iterator.
-   * @throws IllegalArgumentException if the initial value is less than the final, but the step is
-   *     negative, or conversely if the initial value is greater than the final, but the step is
-   *     positive.
+   * @throws IllegalArgumentException if the initial value is less than the final,
+   *                                  but the step is
+   *                                  negative, or conversely if the initial value
+   *                                  is greater than the final, but the step is
+   *                                  positive.
    */
   @Override
   public Iterator<Integer> iterator() {
-    if (step > 0 && from > to || step < 0 && from < to) throw new IllegalArgumentException();
+    if (step > 0 && from > to || step < 0 && from < to)
+      throw new IllegalArgumentException();
     return new Iterator<Integer>() {
 
       /** The next candidate. */
@@ -119,11 +130,15 @@ public class IntRange implements Iterable<Integer> {
 
       @Override
       public Integer next() {
-        if (!hasNext()) throw new NoSuchElementException();
+        if (!hasNext())
+          throw new NoSuchElementException();
         final int result = next;
-        if (step > 0 && next >= Integer.MAX_VALUE - step) next = Integer.MAX_VALUE;
-        else if (step < 0 && next <= Integer.MIN_VALUE - step) next = Integer.MIN_VALUE;
-        else next += step;
+        if (step > 0 && next >= Integer.MAX_VALUE - step)
+          next = Integer.MAX_VALUE;
+        else if (step < 0 && next <= Integer.MIN_VALUE - step)
+          next = Integer.MIN_VALUE;
+        else
+          next += step;
         return result;
       }
     };
