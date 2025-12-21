@@ -25,16 +25,19 @@ import it.unimi.di.prog2.h13.ArrayIntSet;
 import java.util.NoSuchElementException;
 
 /**
- * Example of {@code MaxIntSet} taken from section 7.4 of the textbook by Liskov <em>et al.</em>.
+ * Example of {@code MaxIntSet} taken from section 7.4 of the textbook by Liskov
+ * <em>et al.</em>.
  *
- * <p><b>Note</b>: this class extends {@link it.unimi.di.prog2.h13.ArrayIntSet}.
+ * <p>
+ * <b>Note</b>: this class extends {@link it.unimi.di.prog2.h13.ArrayIntSet}.
  */
 public class MaxIntSet extends ArrayIntSet {
 
   /** The biggest element, if set is not empty. */
   private int biggest;
 
-  // RI: size() == 0 or isIn(biggest) and for every x isIn(x) implies biggest >= x.
+  // RI: size() == 0 or isIn(biggest) and for every x isIn(x) implies biggest >=
+  // x.
   // AF: coincides with that of IntSet
 
   /** Construct an empty {@code MaxIntSet}. */
@@ -44,7 +47,8 @@ public class MaxIntSet extends ArrayIntSet {
 
   @Override
   public void insert(final int x) {
-    if (size() == 0 || x > biggest) biggest = x;
+    if (size() == 0 || x > biggest)
+      biggest = x;
     super.insert(x);
   }
 
@@ -53,19 +57,23 @@ public class MaxIntSet extends ArrayIntSet {
     super.remove(x);
     if (size() == 0 || x != biggest)
       return; // observe that if x > biggest it was not actually in this, so we don't need to
-    // update biggest
+              // update biggest
     biggest = Integer.MIN_VALUE;
-    for (int z : this) if (z > biggest) biggest = z;
+    for (int z : this)
+      if (z > biggest)
+        biggest = z;
   }
 
   /**
-   * Returns the maximum value in the set, or raises {@link IllegalStateException} otherwise.
+   * Returns the maximum value in the set, or raises {@link IllegalStateException}
+   * otherwise.
    *
    * @return the maximum value in the set.
    * @throws NoSuchElementException if the set is empty.
    */
   public int max() throws NoSuchElementException {
-    if (size() == 0) throw new NoSuchElementException("An empty set does not have a maximum");
+    if (size() == 0)
+      throw new NoSuchElementException("An empty set does not have a maximum");
     return biggest;
   }
 

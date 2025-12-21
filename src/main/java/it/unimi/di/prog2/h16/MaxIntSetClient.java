@@ -27,13 +27,18 @@ import java.util.Scanner;
 public class MaxIntSetClient {
 
   /** . */
-  private MaxIntSetClient() {}
+  private MaxIntSetClient() {
+  }
 
   /**
-   * Reads a series of instructions and prints the resulting set from their execution.
+   * Reads a series of instructions and prints the resulting set from their
+   * execution.
    *
-   * <p>After instantiating an empty set, it reads a series of integers from the input stream. If
-   * they are positive, it adds them to the set; if they are negative, it removes the corresponding
+   * <p>
+   * After instantiating an empty set, it reads a series of integers from the
+   * input stream. If
+   * they are positive, it adds them to the set; if they are negative, it removes
+   * the corresponding
    * absolute value. If the integer is 0, it prints the set.
    *
    * @param args not used.
@@ -43,9 +48,12 @@ public class MaxIntSetClient {
     try (Scanner s = new Scanner(System.in)) {
       while (s.hasNextInt()) {
         int x = s.nextInt();
-        if (x > 0) maxSet.insert(x);
-        else if (x < 0) maxSet.remove(-x);
-        else System.out.println(maxSet);
+        if (x > 0)
+          maxSet.insert(x);
+        else if (x < 0)
+          maxSet.remove(-x);
+        else
+          System.out.println(maxSet);
       }
     }
   }
